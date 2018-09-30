@@ -95,7 +95,7 @@ function displayPlayerVideos() {
 
   //var player = $(this).attr("data-name");
   var player = "Raul Ruidiaz";
-  var queryURL = "https://www.googleapis.com/youtube/v3/search?/search?part=snippet&topicId=/m/05z1_&type=video&key=AIzaSyDxvKiuE-5d6m_jf4fCxvgi7UC04-EZSJ4";
+  var queryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&topicId=/m/05z1_&type=video&key=AIzaSyACTpwErP0AMANAI6goF10LBfoxHeKcD9w";
 
   // Creating an AJAX call for the specific player button being clicked
   $.ajax({
