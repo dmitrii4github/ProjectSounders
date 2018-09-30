@@ -163,8 +163,13 @@ function displayPlayerWikipediaArticle() {
     method: "GET"
   }).then(function(response) {
 
+    console.log(response);
     console.log(response.query.pages[26176050].extract);
-    var playerDiv = $(response.query.pages[26176050].extract);
+    var pid;
+    for (pid in response.query.pages) {
+      console.log(pid);
+    }
+    var playerDiv = $(response.query.pages[pid].extract);
 
     // Creating a div to hold the player
     var playerView = $("#player-view");
