@@ -76,11 +76,16 @@ database.ref().on("child_added", function(childSnapshot) {
   console.log(playerPosition);
   console.log(playerCountry);
  
+  var tdVideoLink = $('<td>').html('<a href="#">link</a>');
+  var tdWikipediaLink = $('<td>').html('<a href="#">link</a>');
+
   // Create the new row
   var newRow = $("<tr>").append(
     $("<td>").text(playerName),
     $("<td>").text(playerPosition),    
     $("<td>").text(playerCountry),
+    tdVideoLink,
+    tdWikipediaLink
   );
 
   // Append the new row to the table
@@ -113,10 +118,12 @@ function displayPlayerVideos() {
 
      playerView.html("");
 
-//     for (var i=0; i<5; i++) {
+     for (var i=0; i<5; i++) {
 
-       var videoURL = "http://www.youtube.com/embed/PkFv5rKmzlA";
-
+      var videoID = response.items[i].id.videoId;
+      
+      var videoURL = "http://www.youtube.com/embed/"+videoID;
+      alert(videoURL);
 //       //alert(imgURL);
       
 
@@ -133,7 +140,7 @@ function displayPlayerVideos() {
       playerView.append(playerDiv);
 //   });
 
-// }
+ }
 
 // // Function for displaying animal data
 // function renderButtons() {
