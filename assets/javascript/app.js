@@ -107,31 +107,30 @@ function displayPlayerVideos() {
     var playerDiv = $("<div class='player'>");
 
     // Creating a div to hold the player
-    var animalView = $("#player-view");
+    var playerView = $("#player-view");
 
     console.log(response);
 
-//     playerView.html("");
+     playerView.html("");
 
 //     for (var i=0; i<5; i++) {
 
-//       var imgURL = "https://media.giphy.com/media/"+response.data[i].id + "/giphy.gif";
+       var videoURL = "http://www.youtube.com/embed/PkFv5rKmzlA";
 
 //       //alert(imgURL);
       
-//       var rating = $("<div>Rating: "+response.data[i].rating+"</div>");
 
-//       var image = $("<img>").attr("src", imgURL);
+       var iframe = $("<iframe>").attr("src", videoURL);
 //       image.addClass("gif");
 //       image.addClass("playing");
 
 //       // Appending the image
       
-//       animalDiv.append(rating);
+       playerDiv.append(iframe);
 //       animalDiv.append(image);
 //     }
 
-//      $("#animal-view").append(animalDiv);
+      playerView.append(playerDiv);
 //   });
 
 // }
