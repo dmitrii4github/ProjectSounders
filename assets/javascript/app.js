@@ -1,6 +1,7 @@
 
-displayPlayerVideos();
+//displayPlayerVideos();
 
+$(document).on("click", "#videoButton", displayPlayerVideos);
 
 // Steps to complete:
 
@@ -76,16 +77,17 @@ database.ref().on("child_added", function(childSnapshot) {
   console.log(playerPosition);
   console.log(playerCountry);
  
-  var tdVideoLink = $('<td>').html('<a href="#">link</a>');
-  var tdWikipediaLink = $('<td>').html('<a href="#">link</a>');
+  //var tdVideoLink = $('<td>').html('<a href="#">link</a>');
+  //var tdWikipediaLink = $('<td>').html('<a href="#">link</a>');
+
+  var tdVideoButton = $('<td>').html("<button id='videoButton'>click</button>");
 
   // Create the new row
   var newRow = $("<tr>").append(
     $("<td>").text(playerName),
     $("<td>").text(playerPosition),    
     $("<td>").text(playerCountry),
-    tdVideoLink,
-    tdWikipediaLink
+    tdVideoButton
   );
 
   // Append the new row to the table
