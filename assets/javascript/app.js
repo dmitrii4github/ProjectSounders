@@ -3,6 +3,8 @@
 
 $(document).on("click", "#videoButton", displayPlayerVideos);
 
+$(document).on("click", "#wikipediaButton", displayPlayerWikipediaArticle);
+
 // Steps to complete:
 
 // 1. Initialize Firebase
@@ -81,13 +83,15 @@ database.ref().on("child_added", function(childSnapshot) {
   //var tdWikipediaLink = $('<td>').html('<a href="#">link</a>');
 
   var tdVideoButton = $('<td>').html("<button id='videoButton'>click</button>");
+  var tdWikipediaButton = $('<td>').html("<button id='wikipediaButton'>click</button>")
 
   // Create the new row
   var newRow = $("<tr>").append(
     $("<td>").text(playerName),
     $("<td>").text(playerPosition),    
     $("<td>").text(playerCountry),
-    tdVideoButton
+    tdVideoButton,
+    tdWikipediaButton
   );
 
   // Append the new row to the table
@@ -125,7 +129,7 @@ function displayPlayerVideos() {
       var videoID = response.items[i].id.videoId;
       
       var videoURL = "http://www.youtube.com/embed/"+videoID;
-      alert(videoURL);
+      //alert(videoURL);
 //       //alert(imgURL);
       
 
@@ -144,77 +148,31 @@ function displayPlayerVideos() {
 
  }
 
-// // Function for displaying animal data
-// function renderButtons() {
-
-//   // Deleting the animals prior to adding new animals
-//   // (this is necessary otherwise you will have repeat buttons)
-//   $("#buttons-view").empty();
-
-//   // Looping through the array of animals
-//   for (var i = 0; i < animals.length; i++) {
-
-//     // Then dynamicaly generating buttons for each animal in the array
-//     // This code $("<button>") is all jQuery needs to create the beginning and end tag. (<button></button>)
-//     var a = $("<button>");
-//     // Adding a class of animal-btn to our button
-//     a.addClass("animal-btn");
-//     // Adding a data-attribute
-//     a.attr("data-name", animals[i]);
-//     // Providing the initial button text
-//     a.text(animals[i]);
-//     // Adding the button to the buttons-view div
-//     $("#buttons-view").append(a);
-//   }
-// }
-
-// // This function handles events where a animal button is clicked
-// //$("#add-animal").on("click", function(event) {
-
-// $(document).on("click", "#add-animal", function(event) {
-//   event.preventDefault();
-//   // This line grabs the input from the textbox
-//   var animal = $("#animal-input").val().trim();
-
-//   //alert(animal);
-
-//   // Adding animal from the textbox to our array
-//   animals.push(animal);
-
-//   // Calling renderButtons which handles the processing of our animal array
-//   renderButtons();
-// });
-
-// // Adding a click event listener to all elements with a class of "animal-btn"
-// $(document).on("click", ".animal-btn", displayAnimalGifs);
-
-
-
-
-
-
-
-
-// $(document).ready(function() {
-// // Calling the renderButtons function to display the intial buttons
-// renderButtons();
-// });
-
-
-// $(document).on("click", ".gif", function(){
-//   //alert("Clicked");
-// var src = $(this).attr("src");
-// if($(this).hasClass('playing')){
-//  //stop
-//  $(this).attr('src', src.replace(".gif", "_s.gif"))
-//  //alert($(this).attr('src'));
-//  $(this).removeClass('playing');
-// } else {
-// //play
-// $(this).addClass('playing');
-// $(this).attr('src', src.replace("_s.gif", ".gif"))
-
-
 });
+
+}
+
+
+function displayPlayerWikipediaArticle() {
+  var player = "Raúl_Ruidíaz";
+  var queryURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&origin=*&titles="+player;
+
+  // Creating an AJAX call for the specific player button being clicked
+  $.ajax({
+    url: queryURL,
+    method: "GET"
+  }).then(function(response) {
+
+    console.log(response.query.pages[26176050].extract);
+    var playerDiv = $(response.query.pages[26176050].extract);
+
+    // Creating a div to hold the player
+    var playerView = $("#player-view");
+
+     playerView.html("");
+     playerView.append(playerDiv);
+     
+  });
+
 
 }
