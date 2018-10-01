@@ -109,7 +109,7 @@ function displayPlayerVideos() {
   var player = $(this).attr("id");
   alert(player);
   //var player = "Raul Ruidiaz";
-  var queryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&q="+player+"&type=video&key=AIzaSyACTpwErP0AMANAI6goF10LBfoxHeKcD9w";
+  var queryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&q="+player+"&type=video&key=AIzaSyACTpwErP0AMANAI6goF10LBfoxHeKcD9w&part=status";
 
   // Creating an AJAX call for the specific player button being clicked
   $.ajax({
@@ -131,12 +131,22 @@ function displayPlayerVideos() {
 
       var videoID = response.items[i].id.videoId;
       
-      var videoURL = "http://www.youtube.com/embed/"+videoID;
-      //alert(videoURL);
+      var queryStatusURL = "https://www.googleapis.com/youtube/v3/videos?id="+videoID+"&key=AIzaSyACTpwErP0AMANAI6goF10LBfoxHeKcD9w&part=status";
+      
+      $.ajax({
+        url: queryStatusURL,
+        method: "GET"
+      }).then(function(statusResponse) {
+        console.log(statusResponse);
+      });
+
+      var videoURL = "https://www.youtube.com/embed/"+videoID;
+      //var videoURL = "https://youtu.be/embed/"+videoID;
+      alert(videoURL);
 //       //alert(imgURL);
       
 
-       var iframe = $("<iframe>").attr("src", videoURL);
+       var iframe = $("<iframe allowfullscreen>").attr("src", videoURL);
 //       image.addClass("gif");
 //       image.addClass("playing");
 
