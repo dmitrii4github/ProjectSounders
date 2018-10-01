@@ -1,9 +1,9 @@
 
 //displayPlayerVideos();
 
-$(document).on("click", "#videoButton", displayPlayerVideos);
+$(document).on("click", ".videoButton", displayPlayerVideos);
 
-$(document).on("click", "#wikipediaButton", displayPlayerWikipediaArticle);
+$(document).on("click", ".wikipediaButton", displayPlayerWikipediaArticle);
 
 // Steps to complete:
 
@@ -82,8 +82,10 @@ database.ref().on("child_added", function(childSnapshot) {
   //var tdVideoLink = $('<td>').html('<a href="#">link</a>');
   //var tdWikipediaLink = $('<td>').html('<a href="#">link</a>');
 
-  var tdVideoButton = $('<td>').html("<button id='videoButton'>click</button>");
-  var tdWikipediaButton = $('<td>').html("<button id='wikipediaButton'>click</button>")
+  var videoButtonID = playerName;
+  var wikipediaButtonID = playerName;
+  var tdVideoButton = $('<td>').html("<button class='videoButton' id='"+videoButtonID+"'>click</button>");
+  var tdWikipediaButton = $('<td>').html("<button class='wikipediaButton' id='"+wikipediaButtonID+"'>click</button>")
 
   // Create the new row
   var newRow = $("<tr>").append(
@@ -104,9 +106,10 @@ database.ref().on("child_added", function(childSnapshot) {
 // displayPlayerVideos function re-renders the HTML to display the appropriate content
 function displayPlayerVideos() {
 
-  //var player = $(this).attr("data-name");
-  var player = "Raul Ruidiaz";
-  var queryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&q='Raul Ruidiaz'&type=video&key=AIzaSyACTpwErP0AMANAI6goF10LBfoxHeKcD9w";
+  var player = $(this).attr("id");
+  alert(player);
+  //var player = "Raul Ruidiaz";
+  var queryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&q="+player+"&type=video&key=AIzaSyACTpwErP0AMANAI6goF10LBfoxHeKcD9w";
 
   // Creating an AJAX call for the specific player button being clicked
   $.ajax({
@@ -154,7 +157,11 @@ function displayPlayerVideos() {
 
 
 function displayPlayerWikipediaArticle() {
-  var player = "Raúl_Ruidíaz";
+  
+  var player = $(this).attr("id");
+  var player = player.split(' ').join('_');
+  alert(player);
+  //var player = "Raúl_Ruidíaz";
   var queryURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&origin=*&titles="+player;
 
   // Creating an AJAX call for the specific player button being clicked
@@ -164,7 +171,7 @@ function displayPlayerWikipediaArticle() {
   }).then(function(response) {
 
     console.log(response);
-    console.log(response.query.pages[26176050].extract);
+    //console.log(response.query.pages[26176050].extract);
     var pid;
     for (pid in response.query.pages) {
       console.log(pid);
