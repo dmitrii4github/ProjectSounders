@@ -107,7 +107,7 @@ database.ref().on("child_added", function(childSnapshot) {
 function displayPlayerVideos() {
 
   var player = $(this).attr("id");
-  alert(player);
+  //alert(player);
   //var player = "Raul Ruidiaz";
   var queryURL = "https://www.googleapis.com/youtube/v3/search?part=snippet&q="+player+"&type=video&key=AIzaSyACTpwErP0AMANAI6goF10LBfoxHeKcD9w&part=status";
 
@@ -142,7 +142,7 @@ function displayPlayerVideos() {
 
       var videoURL = "https://www.youtube.com/embed/"+videoID;
       //var videoURL = "https://youtu.be/embed/"+videoID;
-      alert(videoURL);
+      //alert(videoURL);
 //       //alert(imgURL);
       
 
@@ -172,7 +172,7 @@ function displayPlayerWikipediaArticle() {
   
   var player = $(this).attr("id");
   var player = player.split(' ').join('_');
-  alert(player);
+  //alert(player);
   //var player = "Raúl_Ruidíaz";
   var queryURL = "https://en.wikipedia.org/w/api.php?action=query&prop=extracts&format=json&exintro=&origin=*&titles="+player;
 
