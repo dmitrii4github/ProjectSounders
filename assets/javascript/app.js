@@ -1,4 +1,5 @@
 
+
 //displayPlayerVideos();
 
 $(document).on("click", ".videoButton", displayPlayerVideos);
@@ -13,7 +14,6 @@ $(document).on("click", ".wikipediaButton", displayPlayerWikipediaArticle);
 
 // 1. Initialize Firebase
 // Initialize Firebase
-
 
   // Initialize Firebase
   var config = {
@@ -202,3 +202,47 @@ function displayPlayerWikipediaArticle() {
 }
 
 
+$("#sign-up-btn").on("click", function(event) {
+  event.preventDefault();
+
+  // Grabs user input
+  var email = $("#e-mail-input").val().trim();
+  var password = $("#password-input").val().trim();
+
+  firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
+    console.log(error.code);
+    console.log(error.message);
+ });
+
+});
+
+$("#sign-in-btn").on("click", function(event) {
+  event.preventDefault();
+
+  // Grabs user input
+  var email = $("#e-mail-input").val().trim();
+  var password = $("#password-input").val().trim();
+
+
+//   firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+//     console.log(error.code);
+//     console.log(error.message);
+    
+//  });
+
+//  if (error == null) {
+//    window.location.href = 'index2.html';
+//  }
+
+
+ firebase.auth().signInWithEmailAndPassword(email, password).then(function(){
+  //Success, move to homepage.
+  console.log("logged in!")
+  window.location.href = 'index2.html';
+}).catch(function(error){
+  console.log(error.code);
+  console.log(error.message);
+});
+
+
+});
