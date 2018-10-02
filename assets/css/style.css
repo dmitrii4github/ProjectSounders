@@ -10,3 +10,13 @@ body {
     align-self: center;
     margin-left: 25%;
 }
+
+#copyright2 {
+    align-self: center;
+    margin-left: 40%;
+    width: 100px;
+}
+
+#sign-in-btn {
+    margin-right: 20px;
+}
