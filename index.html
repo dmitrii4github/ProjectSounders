@@ -24,7 +24,7 @@
   <script type="text/babel">
     class Copyright extends React.Component {
       render() {
-        return (<p>Copyright 2018</p>);
+        return (<div id="copyright">Copyright 2018</div>);
       }
   }
   ReactDOM.render(
@@ -52,7 +52,7 @@
   <div class="container">
 
     <!-- Jumbotron -->
-    <div class="jumbotron" style="background-color: black; color: white">
+    <div class="jumbotron" style="background-color: mediumseagreen ; color: blue">
       <h1 class="text-center">Seattle Sounders FC</h1>
     </div>
 
@@ -65,7 +65,9 @@
         <!-- Current Players-->
         <div class="card mb-4">
           <div class="card-body">
-            Current Roster
+            <b>Current Roster</b>
+            <br>
+            <br>
             <table class="table table-sm table-hover" id='player-table'>
               <thead>
                 <tr>
@@ -94,7 +96,9 @@
           <!-- Add Player  -->
           <div class="card mb-4 p-4">
             <div class="card-body">
-              Add Player
+              <b>Add Player</b>
+              <br>
+              <br>
               <!-- Entry Form -->
               <form>
                 <div class="form-group row">

@@ -1,0 +1,12 @@
+.jumbotron {
+    width: 100%;
+}
+
+body {
+    font-size: 11px;
+}
+
+#copyright {
+    align-self: center;
+    margin-left: 25%;
+}
